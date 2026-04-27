@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kitae (Joseph) Kim</title>
+
+  <meta name="ext-resource-dependency" content="assets/Kitae_Kim_CV.pdf" data-resource-id="cv" />
+  <meta name="ext-resource-dependency" content="assets/CHI2024_Chatbot_Customization.pdf" data-resource-id="chi2024pdf" />
+  <meta name="ext-resource-dependency" content="assets/CSCW2023_OTT_Drama.pdf" data-resource-id="cscw2023pdf" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=1777275849970">
+
+  <template id="__bundler_thumbnail" data-bg-color="#dee2ea">
+    <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+      <rect width="1200" height="800" fill="#dee2ea"/>
+      <text x="120" y="460" font-family="Georgia, serif" font-size="220" font-style="italic" fill="#0a0e18">K</text>
+      <text x="280" y="460" font-family="Georgia, serif" font-size="220" fill="#1f3ed6">.</text>
+      <rect x="120" y="540" width="240" height="4" fill="#1f3ed6"/>
+    </svg>
+  </template>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#top" id="site-brand"></a>
+      <nav class="nav-links" id="site-nav"></nav>
+      <div class="controls" id="site-controls"></div>
+    </div>
+  </header>
+
+  <main class="container page">
+    <section class="hero" id="top"><div id="hero"></div></section>
+    <section class="section" id="about"><div id="about-block"></div></section>
+    <section class="section" id="news"><div id="news-block"></div></section>
+    <section class="section" id="publications"><div id="pub-block"></div></section>
+    <section class="section" id="experience"><div id="exp-block"></div></section>
+    <section class="section" id="contact"><div id="contact-block"></div></section>
+    <footer class="footer" id="footer-block"></footer>
+  </main>
+
+  <script src="content.js?v=1777275849970"></script>
+  <script>
+    // Rewire PDF paths to bundled blob URLs (standalone build).
+    (function () {
+      var R = window.__resources || {};
+      var S = window.SITE_CONTENT;
+      if (!S) return;
+      if (S.links) S.links.forEach(function (l) { if (l.key === "cv" && R.cv) l.href = R.cv; });
+      if (S.publications) S.publications.forEach(function (p) {
+        if (p.id === "chi2024"  && R.chi2024pdf)  p.pdf = R.chi2024pdf;
+        if (p.id === "cscw2023" && R.cscw2023pdf) p.pdf = R.cscw2023pdf;
+      });
+    })();
+
+    window.SITE_PAGE = {
+      brand: "site-brand",
+      nav: "site-nav",
+      controls: "site-controls",
+      hero: "hero",
+      about: "about-block",
+      news: "news-block",
+      publications: "pub-block",
+      experience: "exp-block",
+      contact: "contact-block",
+      footer: "footer-block",
+      multiPage: false,
+      standalone: true,
+    };
+  </script>
+  <script src="app.js?v=1777275849970"></script>
+</body>
+</html>

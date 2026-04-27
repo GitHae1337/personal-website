@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kitae Kim — A · Single-page</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=1777275849970">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html" id="site-brand"></a>
+      <nav class="nav-links" id="site-nav"></nav>
+      <div class="controls" id="site-controls"></div>
+    </div>
+  </header>
+
+  <main class="container page">
+    <section class="hero" id="top"><div id="hero"></div></section>
+    <section class="section" id="about"><div id="about-block"></div></section>
+    <section class="section" id="news"><div id="news-block"></div></section>
+    <section class="section" id="publications"><div id="pub-block"></div></section>
+    <section class="section" id="experience"><div id="exp-block"></div></section>
+    <section class="section" id="contact"><div id="contact-block"></div></section>
+    <footer class="footer" id="footer-block"></footer>
+  </main>
+
+  <script src="content.js?v=1777275849970"></script>
+  <script>
+    window.SITE_PAGE = {
+      brand: "site-brand",
+      nav: "site-nav",
+      controls: "site-controls",
+      hero: "hero",
+      about: "about-block",
+      news: "news-block",
+      publications: "pub-block",
+      experience: "exp-block",
+      contact: "contact-block",
+      footer: "footer-block",
+      multiPage: false,
+    };
+  </script>
+  <script src="app.js?v=1777275849970"></script>
+</body>
+</html>

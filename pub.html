@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Publication — Kitae Kim</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=1777275849970">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html" id="site-brand"></a>
+      <nav class="nav-links" id="site-nav"></nav>
+      <div class="controls" id="site-controls"></div>
+    </div>
+  </header>
+
+  <main class="container page pub-detail" id="detail">
+    <!-- rendered by script -->
+  </main>
+
+  <footer class="container">
+    <div class="footer" id="footer-block"></div>
+  </footer>
+
+  <script src="content.js?v=1777275849970"></script>
+  <script>
+    window.SITE_PAGE = {
+      brand: "site-brand",
+      nav: "site-nav",
+      controls: "site-controls",
+      footer: "footer-block",
+      multiPage: false,
+      onRender: function () {
+        const L = window.SITE_STATE.getLang();
+        const id = new URLSearchParams(location.search).get("id");
+        const p = (window.SITE_CONTENT.publications || []).find(x => x.id === id);
+        const U = window.SITE_CONTENT.ui;
+        const root = document.getElementById("detail");
+        if (!p) {
+          root.innerHTML = `<a class="back-link" href="index.html#publications">${U.backToPubs[L]}</a>
+            <h1>${L === "en" ? "Publication not found" : "논문을 찾을 수 없어요"}</h1>`;
+          return;
+        }
+        const pdfBlock = p.pdf
+          ? `<a class="ctrl-btn active" href="${p.pdf}" target="_blank" rel="noopener" style="padding:10px 16px;font-size:13px">${U.downloadPdf[L]} ↗</a>`
+          : `<span class="ctrl-btn" style="padding:10px 16px;font-size:13px;cursor:default">${U.noPdf[L]}</span>`;
+        root.innerHTML = `
+          <a class="back-link" href="index.html#publications">${U.backToPubs[L]}</a>
+          <h1>${p.title}</h1>
+          <div class="meta-row">
+            <span class="venue">${p.venue}${p.venueNote ? " · " + p.venueNote : ""}</span>
+            <span>${p.year}</span>
+          </div>
+          <div style="font-family:var(--mono);font-size:12px;letter-spacing:0.05em;color:var(--ink-2);margin-bottom:10px">${U.authors[L].toUpperCase()}</div>
+          <div style="margin-bottom:32px;font-size:15px">${p.authors.map(a => a.me ? `<strong style="color:var(--ink)">${a.name}</strong>` : a.name).join(", ")}</div>
+          <div style="font-family:var(--mono);font-size:12px;letter-spacing:0.05em;color:var(--ink-2);margin-bottom:10px">${U.abstract[L].toUpperCase()}</div>
+          <div class="body-text"><p>${p.abstract[L]}</p></div>
+          <div class="download-row">${pdfBlock}</div>
+        `;
+      }
+    };
+  </script>
+  <script src="app.js?v=1777275849970"></script>
+</body>
+</html>
